@@ -31,3 +31,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// non aggiungo questa route nell file admin in quanto ci sono dei middleware inseriti all interno del file 
+Route::get('admin/login',[AdminController::class, 'login'])->name('admin.login');
