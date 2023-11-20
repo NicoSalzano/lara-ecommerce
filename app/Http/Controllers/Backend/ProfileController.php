@@ -46,6 +46,8 @@ class ProfileController extends Controller
 
         $user->save();
 
+        // toaste per mpstrarer gli errori o il successo della modifica ma non mi piacciono
+        toastr()->success('Profilo modificato');
         return redirect()->back();
     }
 
@@ -62,6 +64,8 @@ class ProfileController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
+
+        toastr()->success('Profilo modificato');
         return redirect()->back();
     }
 }
