@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-// la utilizzo pe reliminare la foto precedente
 use File;
 
-class ProfileController extends Controller
+class UserProfileController extends Controller
 {
     public function index()
     {
-        return view('Admin.profile.index');
+        return view('Frontend.dashhboard.profile');
     }
-
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         // dd($request->all());
-
+        
         $request->validate([
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email,'.Auth::user()->id],
@@ -26,9 +24,9 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-        // con l utilizo di fle e dell if cancello la foto che e stata modificata cosi salvo solo la foto corrente
+
         if ($request->hasFile('image')) {
-            if(File::exists(public_path($user->image))){
+            if (File::exists(public_path($user->image))) {
                 File::delete(public_path($user->image));
             }
             $image = $request->image;
@@ -38,23 +36,18 @@ class ProfileController extends Controller
             $path = "uploads/".$imageName;
         
             $user->image = $path;
-            
         }
-        
+
         $user->name = $request->name;
         $user->email = $request->email;
 
         $user->save();
-
-        // toaste per mpstrarer gli errori o il successo della modifica ma non mi piacciono
-        toastr()->success('Profilo modificato');
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Il profilo e stato modificato');
     }
 
     public function updatePassword(Request $request)
     {
         // dd($request->all());
-
         $request->validate([
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'confirmed','min:8'],
@@ -63,9 +56,8 @@ class ProfileController extends Controller
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);
+        // dd($request->all());
 
-
-        toastr()->success('Profilo modificato');
-        return redirect()->back();
+        return redirect()->back()->with('message', 'La password e stata modificata');
     }
 }

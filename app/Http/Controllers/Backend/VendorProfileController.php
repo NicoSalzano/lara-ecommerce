@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-// la utilizzo pe reliminare la foto precedente
 use File;
 
-class ProfileController extends Controller
+class VendorProfileController extends Controller
 {
     public function index()
     {
-        return view('Admin.profile.index');
+        return view('Vendor.dashhboard.profile');
     }
 
     public function update(Request $request)

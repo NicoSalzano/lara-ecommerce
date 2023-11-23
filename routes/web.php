@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\VendorController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\Frontend\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,3 +34,16 @@ require __DIR__.'/auth.php';
 
 // non aggiungo questa route nell file admin in quanto ci sono dei middleware inseriti all interno del file 
 Route::get('admin/login',[AdminController::class, 'login'])->name('admin.login');
+
+
+// Route::group(['middleware' => ['auth','verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
+//     Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');    
+// });
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('user/dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('user/profile',[UserProfileController::class, 'index'])->name('profile');
+    Route::put('/profile',[UserProfileController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/profile',[UserProfileController::class,'updatePassword'])->name('updatePassword');
+});
