@@ -9,10 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // aggiungo nullable alle table in modo da prevenire errori durante le provo che faro
     public function up(): void
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
+            $table->text('banner')->nullable();
+            $table->string('type')->nullable();
+            $table->string('title')->nullable();
+            $table->string('starting_price')->nullable();
+            $table->string('btn_url')->nullable();
+            $table->integer('serial')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

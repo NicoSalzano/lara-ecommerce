@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SliderController extends Controller
 {
@@ -28,7 +29,39 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            // 'banner' => ['required','max:2028','image'],
+            'type' => ['string','max:200'],
+            'title' => ['required','max:200'],
+            'starting_price' =>['max:200'],
+            'btn_url' =>['url'],
+            'serial' =>['required', 'integer'],
+            'status' =>['required']
+        ]);
+
+        // $slider = new Slider();
+
+        // $slider->type = $request->type;
+        // $slider->title = $request->title;
+        // $slider->starting_price = $request->starting_price;
+        // $slider->btn_url = $request->btn_url;
+        // $slider->serial = $request->serial;
+        // $slider->status = $request->status;
+        // $slider->save();
+
+        $slider = Slider::create([
+            'type' => $request->type,
+            'title' => $request->title,
+            'starting_price' => $request->starting_price,
+            'btn_url' => $request->btn_url,
+            'serial' => $request->serial,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('message', 'tutto ok');
+
+        
     }
 
     /**

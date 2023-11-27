@@ -14,6 +14,11 @@
           </div>
 
           <div class="section-body">
+                @if (session('message'))
+                <div class="alert alert-success mt-3  ">
+                  {{session('message')}}
+                </div>
+                @endif
             <div class="row">
               <div class="col-12 ">
                 <div class="card">
