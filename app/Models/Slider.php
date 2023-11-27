@@ -10,6 +10,7 @@ class Slider extends Model
     use HasFactory;
     
     protected $fillable = [
+        'banner',
         'type',
         'title',
         'starting_price',
