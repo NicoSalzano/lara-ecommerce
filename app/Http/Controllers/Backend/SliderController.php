@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\DataTables\SliderDataTable;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ImageUploadTrait;
+
 
 class SliderController extends Controller
 {
@@ -13,9 +15,9 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(SliderDataTable $dataTable)
     {
-        return view('Admin.slider.index');
+        return $dataTable->render('Admin.slider.index');
     }
 
     /**
@@ -64,7 +66,7 @@ class SliderController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->back()->with('message', 'tutto ok');
+        return redirect(route('admin.slider.index'))->with('message', 'tutto ok');
 
         
     }
@@ -82,7 +84,8 @@ class SliderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('Admin.slider.edit', compact('slider'));
     }
 
     /**
@@ -90,7 +93,35 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'banner' => ['nullable','max:2028','image'],
+            'type' => ['string','max:200'],
+            'title' => ['required','max:200'],
+            'starting_price' =>['max:200'],
+            'btn_url' =>['url'],
+            'serial' =>['required', 'integer'],
+            'status' =>['required']
+        ]);
+        $slider = Slider::findOrFail($id);
+        $imagePath = $this->updateImage($request, 'banner','uploads', $slider->banner);
+
+
+
+
+        // PROVARE AD MODIFICARE IL METODO UTILIZZANDO IL MASS ASSIGNEMENT
+        $slider->banner = empty(!$imagePath) ? $imagePath : $slider->banner;
+        $slider->type = $request->type;
+        $slider->title = $request->title;
+        $slider->starting_price = $request->starting_price;
+        $slider->btn_url = $request->btn_url;
+        $slider->serial = $request->serial;
+        $slider->status = $request->status;
+        $slider->save();
+        
+        
+        return redirect(route('admin.slider.index'))->with('message', 'tutto ok');
+
     }
 
     /**
@@ -98,6 +129,11 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        // dd($slider);
+        $this->deleteImage($slider->banner);
+        $slider->delete();
+
+        return response(['status' => 'success', 'message' => 'l elemento e statoi eliminato']);
     }
 }
