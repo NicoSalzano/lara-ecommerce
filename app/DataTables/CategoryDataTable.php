@@ -72,7 +72,7 @@ class CategoryDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1,'asc')
+                    ->orderBy(1,'desc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
