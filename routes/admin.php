@@ -21,4 +21,5 @@ Route::post('profile/update/password',[ProfileController::class, 'updatePassword
 Route::resource('slider',SliderController::class);
 
 // category routes
+Route::put('change-status',[CategoryController::class, 'changeStatus'])->name('change-status');
 Route::resource('category',CategoryController::class);

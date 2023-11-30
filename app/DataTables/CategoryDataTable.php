@@ -43,10 +43,18 @@ class CategoryDataTable extends DataTable
         //     }
         // })
         ->addColumn('status', function($query){
-            $button = '<label class="custom-switch mt-2">
-            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-            <span class="custom-switch-indicator"></span>
-          </label>';
+            if ($query->status == 1) {
+                $button = '<label class="custom-switch mt-2">
+                <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                <span class="custom-switch-indicator"></span>
+              </label>';  
+            }else{
+                $button = '<label class="custom-switch mt-2">
+                <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
+                <span class="custom-switch-indicator"></span>
+              </label>';
+            }
+            
           return $button;
         })
 
@@ -72,7 +80,7 @@ class CategoryDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1,'desc')
+                    ->orderBy(0,'asc')
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
