@@ -7,7 +7,7 @@
                         <i class="far fa-bars"></i>
                     </div>
                     <ul class="wsus_menu_cat_item show_home toggle_menu">
-                        <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> hot fratms</a></li>
                         <li><a class="wsus__droap_arrow" href="#"><i class="fal fa-tshirt"></i> Fashion </a>
                             <ul class="wsus_menu_cat_droapdown">
                                 <li><a href="#">New Arrivals <i class="fas fa-angle-right"></i></a>

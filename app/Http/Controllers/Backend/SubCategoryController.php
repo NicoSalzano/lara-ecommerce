@@ -113,4 +113,14 @@ class SubCategoryController extends Controller
         $subCategory = SubCategory::findOrFail($id)->delete();
         return response(['status' => 'success', 'delete sub-category']);
     }
+
+    public function changeStatus(Request $request)
+    {
+        $subCategory = SubCategory::findOrFail($request->id);
+        $subCategory->status = $request->status == 'true'? 1 : 0;
+        $subCategory->save();
+
+        return response(['message' => 'Stato modificato']);
+    }
+
 }
