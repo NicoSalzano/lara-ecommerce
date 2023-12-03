@@ -18,7 +18,7 @@
             <div class="col-12 ">
               <div class="card">
                 <div class="card-header">
-                  <h4>Create New sub-category</h4>
+                  <h4>Create child-category</h4>
                   @if ($errors->any())
                           @foreach ($errors->all() as $error )
                               <div class="alert alert-danger mt-2">{{$error}}</div>
@@ -30,7 +30,7 @@
                 </div>
                 {{-- togliere il col-md-6 per avere il full width --}}
                 <div class="card-body col-md-6">
-                    <form action="{{route('admin.sub-category.store')}}" method="POST" >
+                    <form action="{{route('admin.child-category.store')}}" method="POST" >
                       @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                           <label for="inputState">Sub-Category</label>
-                          <select id="inputState" class="form-control select sub-category" name="category">
+                          <select id="inputState" class="form-control select sub-category" name="sub_category">
                             <option value="">Select</option>
                             
                           </select>

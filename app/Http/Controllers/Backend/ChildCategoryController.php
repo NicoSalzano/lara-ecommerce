@@ -5,8 +5,10 @@ namespace App\Http\Controllers\backend;
 use App\DataTables\ChildCategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Str;
 
 class ChildCategoryController extends Controller
 {
@@ -33,7 +35,32 @@ class ChildCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'category' => ['required'],
+            'sub_category' => ['required'],
+            'name' => ['required', 'max:200', 'unique:child_categories,name'],
+            'status' => ['required']
+        ]);
+
+        // $childCategory = new ChildCategory();
+
+        // $childCategory->category_id = $request->category;
+        // $childCategory->sub_category_id = $request->sub_category;
+        // $childCategory->name = $request->name;
+        // $childCategory->status = $request->status;
+        // $childCategory->slug = Str::slug($request->name);
+        // $childCategory->save();
+
+        $childCategory = ChildCategory::create([
+            'category_id' => $request->category,
+            'sub_category_id' => $request->sub_category,
+            'name' => $request->name,
+            'status' =>$request->status,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return redirect(route('admin.child-category.index'))->with('message', 'Child Category creaat');
     }
 
     /**
