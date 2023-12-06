@@ -121,13 +121,15 @@
                   if (data.status == 'success') {
                     Swal.fire(
                       'Deleted!',
-                      data.message
+                      data.message,
+                      'success'
                       )
                       window.location.reload();
-                  } else if (data.success == 'error') {
+                  } else if (data.status == 'error') {
                     Swal.fire(
                       'cant delete',
-                      data.message
+                      data.message,
+                      'error'
                       )
                   } 
                 },

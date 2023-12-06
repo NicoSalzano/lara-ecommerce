@@ -72,7 +72,7 @@ class ChildCategoryDataTable extends DataTable
                     ->minifiedAjax()
                     //->dom('Bfrtip')
                     ->orderBy(0,'asc')
-                    ->selectStyleSingle(
+                    ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
                         Button::make('csv'),
