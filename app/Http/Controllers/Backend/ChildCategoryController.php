@@ -76,7 +76,11 @@ class ChildCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $childCategory = ChildCategory::findOrFail($id);
+        $subCategories = SubCategory::where('category_id', $childCategory->category_id)->get();
+        // dd($subCategories);
+        return view('Admin.child-category.edit', compact('categories', 'childCategory','subCategories'));
     }
 
     /**
@@ -84,7 +88,24 @@ class ChildCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'category' => ['required'],
+            'sub_category' => ['required'],
+            'name' => ['required', 'max:200', 'unique:child_categories,name,'.$id],
+            'status' => ['required']
+        ]);
+
+        $childCategory = ChildCategory::findOrFail($id)->update([
+            'category_id' => $request->category,
+            'sub_category_id' => $request->sub_category,
+            'name' => $request->name,
+            'status' =>$request->status,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return redirect(route('admin.child-category.index'))->with('message', 'subcategoria modificata');
+
     }
 
     /**
@@ -92,7 +113,8 @@ class ChildCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $childCategory = ChildCategory::findOrFail($id)->delete();
+        return response(['status' => 'success', 'delete child-category']);
     }
 
     // get subcategories
@@ -101,5 +123,14 @@ class ChildCategoryController extends Controller
         // return $request->all();
         $subCategories = SubCategory::where('category_id', $request->id)->where('status',1)->get();
         return $subCategories;
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $childCategory = ChildCategory::findOrFail($request->id);
+        $childCategory->status = $request->status == 'true'? 1 : 0;
+        $childCategory->save();
+
+        return response(['message' => 'Stato modificato']);
     }
 }

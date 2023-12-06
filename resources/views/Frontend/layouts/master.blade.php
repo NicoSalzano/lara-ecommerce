@@ -79,6 +79,8 @@
                 <div class="wsus__mobile_menu_main_menu">
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <ul class="wsus_mobile_menu_category">
+                            <li><a href="{{route('login')}}"><i class="fas fa-star"></i> login</a></li>
+
                             <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li>
                             <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThreew" aria-expanded="false"
