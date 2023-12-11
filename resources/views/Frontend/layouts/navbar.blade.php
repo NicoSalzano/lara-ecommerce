@@ -1,6 +1,13 @@
 @php
-$categories = \App\Models\Category::all();
+    $categories = \App\Models\Category::where('status' , 1)
+    ->with(['subCategories' => function($query){
+        $query->where('status', 1)
+        ->with(['childCategories' => function($query){
+            $query->where('status', 1);
+        }]);
+    }])->get();
 @endphp
+
 {{-- inserisco la query all interno della vista e no nel controller in quanto questa vista e presente allinterno di tutto il sito e non dovro ripetermi --}}
 <nav class="wsus__main_menu d-none d-lg-block">
     <div class="container">
