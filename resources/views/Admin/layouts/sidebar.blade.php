@@ -12,15 +12,30 @@
           <a href="{{route('admin.dashboard')}}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
         <li class="menu-header">Starter</li>
-        <li class="dropdown">
+        {{-- INIZIO MODIFICARE QUESTA PARTE DI CODICE SETACTIVE PER RENDERE L li ACTIVE --}}
+        <li class="dropdown {{setActive([
+          'admin.slider.*'
+        ])}}">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage website</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
-            <li><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
-            <li><a class="nav-link" href="{{route('admin.sub-category.index')}}">Sub-category</a></li>
-            <li><a class="nav-link" href="{{route('admin.child-category.index')}}">Child-category</a></li>
+            <li class="{{setActive(['admin.slider.*'])}}"><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
           </ul>
         </li>
+        
+        <li class="dropdown {{setActive([
+          'admin.category.*',
+          'admin.sub-category.*',
+          'admin.child-category.*',
+        ])}}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage caetegories</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{setActive(['admin.category.*'])}}"><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
+            <li class="{{setActive(['admin.sub-category.*'])}}"><a class="nav-link" href="{{route('admin.sub-category.index')}}">Sub-category</a></li>
+            <li class="{{setActive(['admin.child-category.*'])}}"><a class="nav-link" href="{{route('admin.child-category.index')}}">Child-category</a></li>
+          </ul>
+        </li>
+
+        {{-- FINE --}}
 
 
         {{-- <li class="dropdown">
