@@ -123,8 +123,10 @@
                       'Deleted!',
                       data.message,
                       'success'
-                      )
+                      );
+                      setTimeout(() => {
                       window.location.reload();
+                    }, 2000);
                   } else if (data.status == 'error') {
                     Swal.fire(
                       'cant delete',
