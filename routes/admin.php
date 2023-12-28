@@ -1,16 +1,17 @@
 <?php
 
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\backend\ChildCategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
-use App\Models\SubCategory;
+use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\backend\ChildCategoryController;
 
 // Admin routes 
 Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -46,3 +47,8 @@ Route::resource('brand',BrandController::class);
 
 // vendor profile route
 Route::resource('vendor-profile', AdminProfileController::class);
+
+// product route
+Route::get('product/get-subcategory',[ProductController::class, 'getSubCategory'])->name('product.get-subcategories');
+Route::get('product/get-childcategory',[ProductController::class, 'getChildCategory'])->name('product.get-childcategories');
+Route::resource('products', ProductController::class);
