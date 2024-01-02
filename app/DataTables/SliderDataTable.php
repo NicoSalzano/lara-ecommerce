@@ -40,6 +40,7 @@ class SliderDataTable extends DataTable
                     return $inactive;   
                 }
             })
+            
             ->rawColumns(['banner','action','status'])
             ->setRowId('id');
     }

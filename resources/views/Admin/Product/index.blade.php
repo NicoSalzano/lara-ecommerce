@@ -34,7 +34,7 @@
       
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
   {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
   <script>
@@ -44,7 +44,7 @@
         let id = $(this).data('id');
 
         $.ajax({
-          url: "{{route('admin.brand.change-status')}}",
+          url: "{{route('admin.product.change-status')}}",
           method:'PUT',
           data: {
             status: isChecked,
@@ -60,4 +60,4 @@
       })
     })
   </script>
-@endpush --}}
+@endpush

@@ -106,7 +106,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $brands = Brand::all();
+        $products = Product::findOrFail($id);
+        return view('Admin.Product.edit',compact('products'));
     }
 
     /**
@@ -122,7 +125,12 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $this->deleteImage($product->thumb_image);
+        $product->delete();
+
+        return response(['status' => 'success', 'message' => 'Product deleted successfully']);
+
     }
     
     /**
@@ -141,5 +149,16 @@ class ProductController extends Controller
      {
         $childCategory = ChildCategory::where('sub_category_id', $request->id)->where('status', 1)->get();
         return $childCategory;
+     }
+
+     /**
+     * Change the product status
+     */
+     public function changeStatus(Request $request)
+     {
+        $product = Product::findOrFail($request->id);
+        $product->status = $request->status == 'true' ? 1 : 0;
+        $product->save();
+        return response(['message' => 'Product status changed']);
      }
 }
