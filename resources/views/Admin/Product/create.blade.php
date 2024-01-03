@@ -5,7 +5,7 @@
      
     <section class="section">
         <div class="section-header">
-          <h1>Slider</h1>
+          <h1>Product</h1>
         </div>
         @if (session('message'))
                 <div class="alert alert-success mt-3  ">
@@ -18,7 +18,7 @@
             <div class="col-12 ">
               <div class="card">
                 <div class="card-header">
-                  <h4>Create New</h4>
+                  <h4>Edit product</h4>
                   @if ($errors->any())
                           @foreach ($errors->all() as $error )
                               <div class="alert alert-danger mt-2">{{$error}}</div>
@@ -148,7 +148,7 @@
                               <option value="0">Inactive</option>
                             </select>
                           </div>
-                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="submit" class="btn btn-success">Edit</button>
                     </form>
                   
                 </div>    
@@ -162,6 +162,7 @@
       <script>
         $(document).ready(function() {
           $('body').on('change', '.main-category', function(e){
+
           //  creo una variabile da cui catturo l id della categoria selezionata
             let id = $(this).val();
             $.ajax({
@@ -184,6 +185,9 @@
               }
             })
           })
+
+
+
            // get child categories
            $('body').on('change', '.sub-category', function(e){
           //  creo una variabile da cui catturo l id della categoria selezionata
