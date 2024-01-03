@@ -35,7 +35,7 @@
                     </div>
                   </div>
             <div class="row">
-              <div class="col-12 ">
+              <div class="col-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Image index</h4>
