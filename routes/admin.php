@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\backend\ChildCategoryController;
+use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Models\ProductImageGallery;
 
 // Admin routes 
 Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -53,3 +55,6 @@ Route::put('product/change-status',[ProductController::class, 'changeStatus'])->
 Route::get('product/get-subcategory',[ProductController::class, 'getSubCategory'])->name('product.get-subcategories');
 Route::get('product/get-childcategory',[ProductController::class, 'getChildCategory'])->name('product.get-childcategories');
 Route::resource('products', ProductController::class);
+
+// product image route
+Route::resource('products-image-gallery',ProductImageGalleryController ::class);
