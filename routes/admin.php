@@ -13,7 +13,9 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductVariantController;
 use App\Models\ProductImageGallery;
+use App\Models\ProductVariant;
 
 // Admin routes 
 Route::get('dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
@@ -58,3 +60,5 @@ Route::resource('products', ProductController::class);
 
 // product image route
 Route::resource('products-image-gallery',ProductImageGalleryController ::class);
+
+Route::resource('products-variant', ProductVariantController::class);
