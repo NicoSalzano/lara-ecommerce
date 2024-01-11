@@ -39,8 +39,8 @@ class ProductVariantController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'name.*' =>['required', 'max:50'],
-            'status.*' => 'required',
+            'name' =>['required', 'max:50'],
+            'status' => 'required',
             'product' => ['required', 'integer']
         ]);
 
@@ -72,13 +72,14 @@ class ProductVariantController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $variant = ProductVariant::findOrFail($id);
+        return view('Admin.Product.product-variant.edit', compact('variant'));
     }
 
     /**
@@ -86,7 +87,19 @@ class ProductVariantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' =>['required', 'max:50'],
+            'status' => 'required',
+        ]);
+
+        $variant = ProductVariant::findOrFail($id);
+        $variant->name = $request->name;
+        $variant->status = $request->status;
+        $variant->save();
+
+        return redirect(route('admin.products-variant.index',['product'=>$variant->product_id]))->with('message', 'Successfully modified product');
+
     }
 
     /**
@@ -94,6 +107,35 @@ class ProductVariantController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $variant = ProductVariant::findOrFail($id);
+        $variant->delete();
+        return response(['status' => 'success', 'message' => 'NICOLA']);
     }
+    // public function destroy(string $id)
+    // {
+    //     $brand = Brand::findOrFail($id);
+    //     $this->deleteImage($brand->logo);
+    //     $brand->delete();
+    //     return response(['status' => 'success', 'message' => 'Brand deleted']);
+    // }
+
+    /**
+     * Change the status of the data.
+     */
+    public function changeStatus(Request $request)
+    {
+        $variant = ProductVariant::findOrFail($request->id);
+        $variant->status = $request->status == 'true' ? 1 : 0;
+        $variant->save();
+        return response(['message' => 'Stato modificato']);
+
+    }
+    // public function changeStatus(Request $request)
+    // {
+    //     $brand = Brand::findOrFail($request->id);
+    //     $brand->status = $request->status == 'true'? 1 : 0;
+    //     $brand->save();
+
+    //     return response(['message' => 'Stato modificato']);
+    // }
 }

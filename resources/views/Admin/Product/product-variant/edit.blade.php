@@ -29,8 +29,9 @@
                 </div>
                 {{-- togliere il col-md-6 per avere il full width --}}
                 <div class="card-body col-md-6">
-                    <form action="{{route('admin.products-variant.store')}}" method="POST" >
+                    <form action="{{route('admin.products-variant.update', $variant->id )}}" method="POST" >
                       @csrf
+                      @method('PUT')
                         {{-- <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control" value="{{old('name')}}" name="name">
@@ -39,11 +40,8 @@
                             <div class="wrap">
                                 <div class="form-group">
                                     <label for="">Nome</label>
-                                    <input type="text" class="form-control"  name="name">
+                                    <input type="text" class="form-control"  name="name" value="{{$variant->name}}">
                                 </div>
-                                <div class="input-group">
-                                 <input type="hidden" name="product" value="{{request()->product}}">
-                               </div>
                                 <div class="form-group">
                                     <label for="inputState">State</label>
                                     <select id="inputState" class="form-control" name="status" >

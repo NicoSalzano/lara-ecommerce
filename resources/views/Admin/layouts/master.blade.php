@@ -117,6 +117,7 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Cancella !"
+            // cancelButtonText: "Nicola!"
           }).then((result) => {
             if (result.isConfirmed) {
               
