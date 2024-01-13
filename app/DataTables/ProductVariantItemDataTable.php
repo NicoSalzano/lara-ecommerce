@@ -33,12 +33,12 @@ class ProductVariantItemDataTable extends DataTable
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
                     <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator bg-success"></span>
+                    <span class="custom-switch-indicator"></span>
                   </label>';  
                 }else{
                     $button = '<label class="custom-switch mt-2">
                     <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator bg-danger"></span>
+                    <span class="custom-switch-indicator"></span>
                   </label>';
                 }
                 
@@ -63,7 +63,7 @@ class ProductVariantItemDataTable extends DataTable
      */
     public function query(ProductVariantItem $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('product_variant_id', request()->variantId)->newQuery();
     }
 
     /**

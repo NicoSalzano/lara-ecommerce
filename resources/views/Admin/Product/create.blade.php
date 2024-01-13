@@ -104,7 +104,7 @@
                           {{-- sku e il codice a barre --}}
                         <div class="form-group">
                             <label>SKU</label>
-                            <input type="number" class="form-control" value="{{old('sku')}}" name="sku">
+                            <input type="text" class="form-control" value="{{old('sku')}}" name="sku">
                         </div>
 
                         <div class="form-group">
@@ -148,7 +148,7 @@
                               <option value="0">Inactive</option>
                             </select>
                           </div>
-                        <button type="submit" class="btn btn-success">Edit</button>
+                        <button type="submit" class="btn btn-success">Create</button>
                     </form>
                   
                 </div>    

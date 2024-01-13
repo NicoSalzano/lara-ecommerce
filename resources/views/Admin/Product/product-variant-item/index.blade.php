@@ -22,7 +22,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>All Variants for: </h4>
+                    <h4>All Variants for: {{$variant->name}} </h4>
                     <div class="card-header-action">
                         <a href="{{route('admin.products-variant-item.create', ['productId' => $product->id, 'variantId'=>$variant->id] )}}" class="btn btn-primary"><i class="fas fa-plus"></i>Create New</a>
                     </div>
@@ -48,7 +48,7 @@
         let id = $(this).data('id');
 
         $.ajax({
-          url: "{{route('admin.products-variant.change-status')}}",
+          url: "{{route('admin.products-variant-item.change-status')}}",
           method:'PUT',
           data: {
             status: isChecked,
