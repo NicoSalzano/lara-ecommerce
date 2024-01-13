@@ -9450,3 +9450,30 @@ a:not([href]):not([class]):hover {
 }
 
 /* extra css end here */
+
+.wsus_input input { 
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #353535;
+  resize: none;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.wsus_input textarea { 
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #353535;
+  resize: none;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}
+.wsus_input label { 
+  margin-bottom: 5px;
+}

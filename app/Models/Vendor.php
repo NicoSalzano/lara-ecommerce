@@ -16,6 +16,7 @@ class Vendor extends Model
         'description',
         'fb_link',
         'tw_link',
-        'insta_link'
+        'insta_link',
+        'shop_name'
     ];
 }

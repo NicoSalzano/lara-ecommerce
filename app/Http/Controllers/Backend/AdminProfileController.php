@@ -37,6 +37,7 @@ class AdminProfileController extends Controller
        $request->validate([
         'phone' => ['required', 'max:50'],
         'banner'=>['nullable','image', 'max:3000' ],
+        'shop_name'=>['required', 'max:3000' ],
         'email'=>['required', 'max:200'],
         'address'=>['required'],
         'description'=>['required'],
@@ -50,6 +51,7 @@ class AdminProfileController extends Controller
        $profile = Vendor::where('user_id', Auth::user()->id)->first()->update([
         'banner' => empty(!$bannerPath) ? $bannerPath : $profile->banner,
         'phone' => $request->phone,
+        'shop_name' => $request->shop_name,
         'address' =>$request->address,
         'email'=>$request->email,
         'description'=>$request->description,

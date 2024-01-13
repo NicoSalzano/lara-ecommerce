@@ -46,6 +46,10 @@
                             <input type="number" class="form-control" value="{{$profile->phone}}" name="phone">
                         </div>
                         <div class="form-group">
+                          <label>Shop Name</label>
+                          <input type="text" class="form-control" value="{{$profile->shop_name}}" name="shop_name">
+                      </div>
+                        <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" value="{{$profile->email}}" name="email">
                         </div>
