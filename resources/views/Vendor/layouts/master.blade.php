@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="{{asset('frontend/css/ranger_style.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/jquery.classycountdown.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/venobox.min.css')}}">
+  
+  {{-- datatable --}}
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
   <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
@@ -57,9 +61,13 @@
     SCROLL BUTTON  END
   ==============================-->
 
-
+  
+  
   <!--jquery library js-->
   <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
+  {{-- datatable --}}
+  <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
   <!--bootstrap js-->
   <script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
   <!--font-awesome js-->
@@ -93,8 +101,10 @@
   <!--classycountdown js-->
   <script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
 
+  
   <!--main/custom js-->
   <script src="{{asset('frontend/js/main.js')}}"></script>
+  @stack('scripts')
 </body>
 
 </html>

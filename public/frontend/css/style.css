@@ -9477,3 +9477,23 @@ a:not([href]):not([class]):hover {
 .wsus_input label { 
   margin-bottom: 5px;
 }
+
+/* datatable product  vendor */
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  background-color: transparent;
+  color: inherit;
+  padding: 8px;
+}
+
+.create_btn{
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.form-select{
+  background-position: right center;
+ 
+}
