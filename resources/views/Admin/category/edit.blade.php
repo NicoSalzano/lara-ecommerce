@@ -18,7 +18,7 @@
             <div class="col-12 ">
               <div class="card">
                 <div class="card-header">
-                  <h4>Edit category</h4>
+                  <h4>Edit category molto interesante</h4>
                   @if ($errors->any())
                           @foreach ($errors->all() as $error )
                               <div class="alert alert-danger mt-2">{{$error}}</div>
